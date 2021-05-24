@@ -1,8 +1,8 @@
-FROM alpine:latest
+FROM alpine:3.12
 
 LABEL maintainer "Marvin Steadfast <marvin@xsteadfastx.org>"
 
-ARG WALLABAG_VERSION=2.3.8
+ARG WALLABAG_VERSION=2.4.2
 
 RUN apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
@@ -43,18 +43,22 @@ RUN set -ex \
       php7-sockets \
       php7-xmlreader \
       php7-tidy \
-      py-mysqldb \
-      py-psycopg2 \
+      php7-intl \
+      py3-mysqlclient \
+      py3-psycopg2 \
       py-simplejson \
       rabbitmq-c \
       s6 \
       tar \
       tzdata \
+      make \
+      bash \
  && rm -rf /var/cache/apk/* \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && curl -s https://getcomposer.org/installer | php \
  && mv composer.phar /usr/local/bin/composer \
+ && composer selfupdate --1 \
  && git clone --branch $WALLABAG_VERSION --depth 1 https://github.com/wallabag/wallabag.git /var/www/wallabag
 
 COPY root /
