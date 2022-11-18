@@ -24,14 +24,14 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v2"
+        uses: actions/checkout@v3
         with:
           fetch-depth: 2
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.5
+          python-version: 3.11
 
       - name: "Build image"
         run: docker-compose -f tests/docker-compose.${{ matrix.database }}.yml build
@@ -40,9 +40,7 @@ jobs:
         run: docker-compose -f tests/docker-compose.${{ matrix.database }}.yml up -d
 
       - name: "Install dependencies"
-        run: |
-          pip install pytest
-          pip install requests
+        run: pip install pytest requests
 
       - name: "Check running instance"
         run: docker ps
