@@ -61,6 +61,3 @@ parameters:
 
     # User-friendly name of your instance for 2FA issuer
     server_name: ${SYMFONY__ENV__SERVER_NAME:-"Your wallabag instance"}
-
-    # php limit
-    php_memory_limit: ${SYMFONY__ENV__PHP_MEMORY_LIMIT_MB:-128}
