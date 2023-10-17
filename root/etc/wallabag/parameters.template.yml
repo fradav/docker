@@ -5,7 +5,7 @@ parameters:
     database_name: ${SYMFONY__ENV__DATABASE_NAME:-symfony}
     database_user: ${SYMFONY__ENV__DATABASE_USER:-root}
     database_password: ${SYMFONY__ENV__DATABASE_PASSWORD:-~}
-    database_path: "%kernel.root_dir%/../data/db/wallabag.sqlite"
+    database_path: "%kernel.project_dir%/data/db/wallabag.sqlite"
     database_table_prefix: ${SYMFONY__ENV__DATABASE_TABLE_PREFIX:-wallabag_}
     database_socket: null
     database_charset: ${SYMFONY__ENV__DATABASE_CHARSET:-utf8}
@@ -23,7 +23,7 @@ parameters:
     twofactor_sender: ${SYMFONY__ENV__TWOFACTOR_SENDER:-no-reply@wallabag.org}
 
     # fosuser stuff
-    fosuser_registration: ${SYMFONY__ENV__FOSUSER_REGISTRATION:-true}
+    fosuser_registration: ${SYMFONY__ENV__FOSUSER_REGISTRATION:-false}
     fosuser_confirmation: ${SYMFONY__ENV__FOSUSER_CONFIRMATION:-true}
 
     # how long the access token should live in seconds for the API
